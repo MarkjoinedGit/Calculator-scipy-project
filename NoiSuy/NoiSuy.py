@@ -12,11 +12,16 @@ def cubic_interpolation(x, x_values, y_values):
 
 # Hàm tính toán và vẽ đồ thị
 def calculate_interpolation():
+    # Lấy dữ liệu từ ô nhập liệu
     x_values = entry_x_values.get().split()
     y_values = entry_y_values.get().split()
     x_new = entry_x_new.get()
 
     try:
+        # Kiểm tra xem tất cả các ô nhập liệu có được điền hay không
+        if not x_values or not y_values or not x_new:
+            raise ValueError("Please fill in all input fields.")
+
         # Chuyển đổi chuỗi thành danh sách số
         x_values = list(map(float, x_values))
         y_values = list(map(float, y_values))
@@ -29,29 +34,19 @@ def calculate_interpolation():
         # Thực hiện nội suy bậc ba
         y_interpolated = cubic_interpolation(x_new, x_values, y_values)
 
-        # Xóa đồ thị hiện tại
-        plt.clf()
-
-        # Vẽ đồ thị mới
-        x_vals_for_plot = np.linspace(min(x_values), max(x_values), 100)
-        plt.plot(x_vals_for_plot, cubic_interpolation(x_vals_for_plot, x_values, y_values), label='Cubic Interpolation', color='#008080')
-        plt.scatter(x_values, y_values, label='Data', color='#008080')
-        plt.legend(loc='upper left')
-        plt.xlabel('X Values', fontweight='bold')
-        plt.ylabel('Y Values', fontweight='bold')
-        plt.title('Cubic Interpolation', fontweight='bold')
-
         # Hiển thị kết quả
         result_text.delete(1.0, 'end')
         result_text.insert('end', f"Cubic Interpolation at x = {x_new}: {y_interpolated}\n")
 
-        # Vẽ lại canvas
+        # Vẽ điểm nội suy mới mà không cần xóa và vẽ lại toàn bộ đồ thị
+        plt.scatter(x_new, y_interpolated, color='#FF4500', label=f'Interpolation at x={x_new}')
+        plt.legend(loc='upper left')
         canvas.draw()
 
     except ValueError as e:
         # Hiển thị thông báo lỗi
         result_text.delete(1.0, 'end')
-        result_text.insert('end', str(e) + '\n')
+        result_text.insert('end', f"Error: {str(e)}\n")
 
 # Hàm đặt lại đồ thị
 def reset_graph():

@@ -12,14 +12,22 @@ def cubic_interpolation(x, x_values, y_values):
 
 # Hàm tính toán và vẽ đồ thị
 def calculate_interpolation():
-    x_values = list(map(float, entry_x_values.get().split()))
-    y_values = list(map(float, entry_y_values.get().split()))
-    x_new = float(entry_x_new.get())
+    x_values = entry_x_values.get().split()
+    y_values = entry_y_values.get().split()
+    x_new = entry_x_new.get()
 
     try:
+        # Chuyển đổi chuỗi thành danh sách số
+        x_values = list(map(float, x_values))
+        y_values = list(map(float, y_values))
+        x_new = float(x_new)
+
+        # Kiểm tra độ dài của các danh sách
+        if len(x_values) != len(y_values):
+            raise ValueError("The number of X values must be equal to the number of Y values.")
+
+        # Thực hiện nội suy bậc ba
         y_interpolated = cubic_interpolation(x_new, x_values, y_values)
-        result_text.delete(1.0, 'end')
-        result_text.insert('end', f"Cubic Interpolation at x = {x_new}: {y_interpolated}\n")
 
         # Xóa đồ thị hiện tại
         plt.clf()
@@ -28,18 +36,20 @@ def calculate_interpolation():
         x_vals_for_plot = np.linspace(min(x_values), max(x_values), 100)
         plt.plot(x_vals_for_plot, cubic_interpolation(x_vals_for_plot, x_values, y_values), label='Cubic Interpolation', color='#008080')
         plt.scatter(x_values, y_values, label='Data', color='#008080')
-        plt.plot([x_new, x_new], [0, y_interpolated], '--', color='#00BFFF', label=f'Connect down to x-axis, y={y_interpolated}')
-        plt.plot([min(x_values), x_new], [y_interpolated, y_interpolated], '--', color='#8A2BE2', label=f'Connect over to y-axis, x={x_new}')
-        plt.scatter(x_new, y_interpolated, color='#FF4500', label=f'Interpolation at x={x_new}')
-        plt.legend(loc='upper left')  # Chú thích ở góc trái trên
+        plt.legend(loc='upper left')
         plt.xlabel('X Values', fontweight='bold')
         plt.ylabel('Y Values', fontweight='bold')
         plt.title('Cubic Interpolation', fontweight='bold')
+
+        # Hiển thị kết quả
+        result_text.delete(1.0, 'end')
+        result_text.insert('end', f"Cubic Interpolation at x = {x_new}: {y_interpolated}\n")
 
         # Vẽ lại canvas
         canvas.draw()
 
     except ValueError as e:
+        # Hiển thị thông báo lỗi
         result_text.delete(1.0, 'end')
         result_text.insert('end', str(e) + '\n')
 

@@ -18,10 +18,9 @@ def Integral():
     window_width, window_height = 1000, 600
     screen = pygame.display.set_mode((window_width, window_height))
     pygame.display.set_caption("Integrate")
-    #background_color = (255, 255, 0)  # Màu vàng cho nền cửa sổ
 
     # Tải hình ảnh nền
-    background_image = pygame.image.load("Calculator-scipy-project\Background\\background3.png")
+    background_image = pygame.image.load("Background\\background3.png")
     # Tạo một bản sao nền có kích thước phù hợp với cửa sổ
     background_scaled = pygame.transform.scale(background_image, (window_width, window_height))
 
@@ -57,7 +56,7 @@ def Integral():
                         upper_limit_value = upper_limit_expr.evalf(subs={'pi': math.pi})
                         
                         result, error = tinh_tich_phan(function, lower_limit_value, upper_limit_value)
-                        result_text = f"Result: {result}\Odd: {error}"
+                        result_text = f"Result: {result}\nOdd: {error}"
                     except Exception as e:
                         result_text = f"Error: {str(e)}"
                 elif event.key == K_BACKSPACE:

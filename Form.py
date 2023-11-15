@@ -14,9 +14,9 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 
 # Tải hình ảnh nền
-background_image = pygame.image.load("Calculator-scipy-project\Background\\background.png")
-background_image1 = pygame.image.load("Calculator-scipy-project\Background\\background1.png")
-background_image2 = pygame.image.load("Calculator-scipy-project\Background\\background2.png")
+background_image = pygame.image.load("Background\\background.png")
+background_image1 = pygame.image.load("Background\\background1.png")
+background_image2 = pygame.image.load("Background\\background2.png")
 
 # Tạo một bản sao nền có kích thước phù hợp với cửa sổ
 background_scaled = pygame.transform.scale(background_image, (window_width, window_height))
@@ -32,21 +32,21 @@ def main():
     current_interface = "interface1"
     
     # Load hình ảnh cho nút
-    button_image = load_image("Calculator-scipy-project\Button\Start.png")
+    button_image = load_image("Button\Start.png")
     button_image = pygame.transform.scale(button_image, (300, 50))  # Chỉnh kích thước nút
-    basic_image=load_image("Calculator-scipy-project\Button\BASIC.png")
+    basic_image=load_image("Button\BASIC.png")
     basic_image=pygame.transform.scale(basic_image, (250, 50))
-    complex_image=load_image("Calculator-scipy-project\Button\COMPLEX.png")
+    complex_image=load_image("Button\COMPLEX.png")
     complex_image=pygame.transform.scale(complex_image, (250, 50))
-    back_image=load_image("Calculator-scipy-project\Button\BACK.png")
+    back_image=load_image("Button\BACK.png")
     back_image=pygame.transform.scale(back_image, (100, 30))
-    matrix_image=load_image("Calculator-scipy-project\Button\MATRIX.png")
+    matrix_image=load_image("Button\MATRIX.png")
     matrix_image=pygame.transform.scale(matrix_image, (200, 50))
-    integral_image=load_image("Calculator-scipy-project\Button\INTEGRAL.png")
+    integral_image=load_image("Button\INTEGRAL.png")
     integral_image=pygame.transform.scale(integral_image, (200, 50))
-    interpolate_image=load_image("Calculator-scipy-project\Button\INTERPOLATE.png")
+    interpolate_image=load_image("Button\INTERPOLATE.png")
     interpolate_image=pygame.transform.scale(interpolate_image, (200, 50))
-    minimalize_image=load_image("Calculator-scipy-project\Button\MINIMALIZE.png")
+    minimalize_image=load_image("Button\MINIMALIZE.png")
     minimalize_image=pygame.transform.scale(minimalize_image, (200, 50))
     
     while running:

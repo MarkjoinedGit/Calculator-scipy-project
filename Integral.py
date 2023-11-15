@@ -55,12 +55,11 @@ def Integral():
                         # Đánh giá giới hạn dưới và giới hạn trên
                         lower_limit_value = lower_limit_expr.evalf(subs={'pi': math.pi})
                         upper_limit_value = upper_limit_expr.evalf(subs={'pi': math.pi})
-
+                        
                         result, error = tinh_tich_phan(function, lower_limit_value, upper_limit_value)
-                        result_text = f"Result: {result}\nError: {error}"
+                        result_text = f"Result: {result}\Odd: {error}"
                     except Exception as e:
                         result_text = f"Error: {str(e)}"
-                        print("Có lỗi xảy ra:", str(e))
                 elif event.key == K_BACKSPACE:
                     if active_input == "lower_limit":
                         lower_limit = lower_limit[:-1]
@@ -91,10 +90,9 @@ def Integral():
                         upper_limit_value = upper_limit_expr.evalf(subs={'pi': math.pi})
 
                         result, error = tinh_tich_phan(function, lower_limit_value, upper_limit_value)
-                        result_text = f"Result: {result}\nError: {error}"
+                        result_text = f"Result: {result}\nOdd: {error}"
                     except Exception as e:
                         result_text = f"Error: {str(e)}"
-                        print("Có lỗi xảy ra:", str(e))
                 else:
                     active_input = None
 

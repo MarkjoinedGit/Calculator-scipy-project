@@ -17,11 +17,11 @@ def Integral():
    # Kích thước cửa sổ
     window_width, window_height = 1000, 600
     screen = pygame.display.set_mode((window_width, window_height))
-    pygame.display.set_caption("Tính Tích Phân")
+    pygame.display.set_caption("Integrate")
     #background_color = (255, 255, 0)  # Màu vàng cho nền cửa sổ
 
     # Tải hình ảnh nền
-    background_image = pygame.image.load("Background\\background3.png")
+    background_image = pygame.image.load("Calculator-scipy-project\Background\\background3.png")
     # Tạo một bản sao nền có kích thước phù hợp với cửa sổ
     background_scaled = pygame.transform.scale(background_image, (window_width, window_height))
 

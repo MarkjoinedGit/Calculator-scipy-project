@@ -104,7 +104,7 @@ def multiply_matrices(matrix_a, matrix_b):
 def divide_matrices(matrix_a, matrix_b):
     # Check if matrix_b is invertible
     # kiem tra ma tran b co nghich dao nguoc duoc hay khong
-    if np.linalg.det(matrix_b) != 0:
+    if linalg.det(matrix_b) != 0:
         result = np.dot(matrix_a, sp.linalg.inv(matrix_b))
         return result
     else:

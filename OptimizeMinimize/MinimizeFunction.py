@@ -55,8 +55,9 @@ class MinimizeFunction:
         self.error_message = self.text_font_smaller.render('', True, 'red')
 
     def drawConstraintsBoard(self):
+        instruction_text = 'Constraints must be specified as gi(x)>=0 (e.g: if constraint is x+2y>=1, you have to write x+2y-1 in constraint_input, and then press +) \n'
         constraints_text = '\n'.join(f'{i+1}. {text}' for i, text in enumerate(self.constraints))
-        self.Constraint_board.html_text = constraints_text
+        self.Constraint_board.html_text = instruction_text+constraints_text
         self.Constraint_board.rebuild()
 
     def drawComponents(self):

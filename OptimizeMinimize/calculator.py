@@ -22,11 +22,11 @@ matrix = [
 calculator_surf = pg.image.load(r'assets\background\screen-background.png').convert()
 calculator_rect = calculator_surf.get_rect(center=(400, 325))
 
-#text input
 text_font = pg.font.Font(r'assets\font\montserrat\Montserrat-Light.otf',25)
+
+#text_input
 text_input = pygame_gui.elements.UITextEntryLine(relative_rect=pg.Rect((220, 55), (359, 37)), manager=manager, object_id='#number_entry')
 result_text = ''
-result_surf = text_font.render(result_text, True, '#ffffff')
 result_rect = pg.Rect(220, 113, 359, 79)
 result_textbox = pygame_gui.elements.UITextEntryLine(relative_rect=result_rect, manager=manager, object_id="#result_entry")
 
@@ -49,7 +49,6 @@ while True:
         if event.type == pg.QUIT:
             pg.quit()
             exit()
-        
         if event.type == pg.MOUSEBUTTONDOWN:
             for btn in number_list:
                 if btn.check_click():
@@ -81,9 +80,7 @@ while True:
         if (event.type == pygame_gui.UI_TEXT_ENTRY_CHANGED and event.ui_object_id == '#result_entry'):
             result_textbox.set_text(result_text)
             
-        if event.type == pg.KEYDOWN: 
-            if event.key == pg.K_RETURN:
-                print(BasicFunction.calculate_expression(text_input.get_text()))
+
         manager.process_events(event)
 
     manager.update(UI_REFRESH_RATE)

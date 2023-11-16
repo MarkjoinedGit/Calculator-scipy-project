@@ -2,7 +2,7 @@ import pygame
 import sys
 from Integral import Integral
 from OptimizeMinimize.MinimizeFunction import MinimizeFunction
-from OptimizeMinimize.calculator import Calculator
+from BasicCalculator import calculator
 from static import *
 from NoiSuy import NoiSuy
 from Matrix.viewLinalg import DisplayViewLinalgBasic
@@ -64,7 +64,7 @@ def main():
                         current_interface = "interface2"
                 elif current_interface == "interface2":
                     if button1_rect.collidepoint(mouse_x, mouse_y):
-                        Calculator().Run()
+                        calculator.Calculator().Run()
                     elif button2_rect.collidepoint(mouse_x, mouse_y):
                         current_interface="interface3"
                     elif back_button_rect.collidepoint(mouse_x, mouse_y):

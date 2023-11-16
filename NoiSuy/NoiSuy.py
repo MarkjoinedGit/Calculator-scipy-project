@@ -57,6 +57,9 @@ def reset_graph():
     entry_x_new.delete(0, 'end')
     canvas.draw()
 
+def back():
+    root.destroy()
+
 # Tạo giao diện
 root = Tk()
 root.title("Cubic Interpolation Calculator")
@@ -97,6 +100,9 @@ ttk.Button(frame, text="Calculate and Display Graph", command=calculate_interpol
 # Nút đặt lại
 ttk.Button(frame, text="Reset", command=reset_graph).grid(row=3, column=1, pady=10, columnspan=2)
 
+# Nút back lại chương trình
+ttk.Button(frame, text="Back", command=back).grid(row=3, column=2, pady=10, columnspan=2)
+
 # Kết quả
 result_text = Text(frame, wrap='word', height=5, width=50)
 result_text.grid(row=4, column=0, columnspan=2, pady=10)
@@ -122,5 +128,10 @@ canvas = FigureCanvasTkAgg(fig, master=frame_graph)
 canvas.draw()
 canvas.get_tk_widget().pack(side='top', fill='both', expand=1)
 
+# kiểm tra xem ứng dụng có đang chạy không
+running = True
+
 # Chạy ứng dụng
-root.mainloop()
+def run():
+    root.mainloop()
+    

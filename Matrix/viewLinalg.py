@@ -10,13 +10,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_agg import FigureCanvasAgg
-import seaborn as sns
 # Import ColorView.py
-import ColorView as color
-import SciPy_Linalg as spLinalg
+from Matrix import ColorView as color
+from Matrix import SciPy_Linalg as spLinalg
 
 #Load Image
-defaultImg=pg.image.load('assets/img/default.png')
+defaultImg=pg.image.load('Matrix/assets/img/default.png')
 
 # bien toan cuc
 view_width = 1200
@@ -803,7 +802,8 @@ class DisplayViewLinalgBasic():
         self.ax.scatter(self.x, self.y, self.Matrix_show, c='green', s=10, label='Vertices')
         # Adjust the view angle
         self.ax.view_init(elev=0, azim=0)
-view = DisplayViewLinalgBasic()
-view.draw() 
+
+# view = DisplayViewLinalgBasic()
+# view.draw() 
                  
                  

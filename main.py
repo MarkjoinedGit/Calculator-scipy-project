@@ -5,6 +5,7 @@ from OptimizeMinimize.MinimizeFunction import MinimizeFunction
 from OptimizeMinimize.calculator import Calculator
 from static import *
 from NoiSuy import NoiSuy
+from Matrix.viewLinalg import DisplayViewLinalgBasic
 # Khởi tạo Pygame
 pygame.init()
 
@@ -72,7 +73,7 @@ def main():
                     if back_button_rect.collidepoint(mouse_x, mouse_y):
                         current_interface = "interface2"
                     elif button1_rect.collidepoint(mouse_x, mouse_y):
-                       pass#giao diện matrix
+                       DisplayViewLinalgBasic().draw()
                     elif button2_rect.collidepoint(mouse_x, mouse_y):
                         Integral()
                     elif button3_rect.collidepoint(mouse_x, mouse_y):

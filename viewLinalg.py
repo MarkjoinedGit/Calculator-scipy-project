@@ -274,7 +274,7 @@ class DisplayViewLinalgBasic():
         # Display Matplotlib plot on Pygame surface
         self.canvas = FigureCanvasAgg(self.fig)
         
-        self.ax.scatter(self.x, self.y, self.Matrix_show, c='green', s=50, label='Vertices')
+        self.ax.scatter(self.x, self.y, self.Matrix_show, c='green', s=10, label='Vertices')
 
         # Annotate each point with its coordinates
         # for i in range(self.x.shape[0]):
@@ -518,7 +518,7 @@ class DisplayViewLinalgBasic():
             self.ResultBox.set_text(f"{self.notice}")
             self.NoticeERORR()
     def setdefaultEigvals(self):
-        self.Matrix1=spLinalg.a_eigvals
+        self.Matrix1Box.set_text(spLinalg.a_eigvals)
     def solveSolTri(self):
         try:
             self.addDataMatrix1_2()
@@ -784,7 +784,7 @@ class DisplayViewLinalgBasic():
                 text = f'({x0}, {y0}, {z0})'
                 self.ax.text(x0, y0, z0, text, color='red', fontsize=8, ha='center', va='center',fontweight='bold')
     
-        self.ax.scatter(self.x, self.y, self.Matrix_show, c='green', s=50, label='Vertices')
+        self.ax.scatter(self.x, self.y, self.Matrix_show, c='green', s=10, label='Vertices')
 
         
         self.canvas.draw()
@@ -800,7 +800,7 @@ class DisplayViewLinalgBasic():
         self.ax.set_xlabel('X')
         self.ax.set_ylabel('Y')
         self.ax.set_zlabel('Z')
-        self.ax.scatter(self.x, self.y, self.Matrix_show, c='green', s=50, label='Vertices')
+        self.ax.scatter(self.x, self.y, self.Matrix_show, c='green', s=10, label='Vertices')
         # Adjust the view angle
         self.ax.view_init(elev=0, azim=0)
 view = DisplayViewLinalgBasic()

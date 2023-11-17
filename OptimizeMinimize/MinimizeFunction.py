@@ -3,7 +3,7 @@ from OptimizeMinimize import buttons as bt
 import pygame_gui
 from OptimizeMinimize import MinimizeCaculator
 from OptimizeMinimize import ExpressionPlotter
-from static import *
+from assets.static import *
 
 class MinimizeFunction:
     def __init__(self):
@@ -14,8 +14,8 @@ class MinimizeFunction:
         self.manager = pygame_gui.UIManager((WINDOW_WIDTH, WINDOW_HEIGHT))
 
         #text
-        self.text_font = pg.font.Font(r'OptimizeMinimize\assets\font\montserrat\Montserrat-Light.otf',30)
-        self.text_font_smaller = pg.font.Font(r'OptimizeMinimize\assets\font\montserrat\Montserrat-Light.otf',15)
+        self.text_font = pg.font.Font(r'assets\font\montserrat\Montserrat-Light.otf',30)
+        self.text_font_smaller = pg.font.Font(r'assets\font\montserrat\Montserrat-Light.otf',15)
 
         #store result
         self.result = []
@@ -41,7 +41,7 @@ class MinimizeFunction:
         self.constraints = []
         self.constraints_text = ''
         self.Constraint_label = self.text_font_smaller.render('Constraint:', True, 'white')
-        self.Constraint_board = pygame_gui.elements.UITextBox('', relative_rect=pg.Rect((22, 215), (313, 202)), manager=self.manager, object_id='#constraint_board')
+        self.Constraint_board = pygame_gui.elements.UITextBox('Constraints must be specified as gi(x)>=0 (e.g: if constraint is x+2y>=1, you have to write x+2y-1 in constraint_input, and then press +) \n', relative_rect=pg.Rect((22, 215), (313, 202)), manager=self.manager, object_id='#constraint_board')
         # take the index input from user to remove specific constraint
         self.constraint_index = 0
         self.Index_label = self.text_font_smaller.render('Index:', True, 'white')
@@ -77,7 +77,7 @@ class MinimizeFunction:
         self.add_constraint_btn.draw()
         self.remove_constraint_btn.draw()
         # get the constraints to display on screen
-        self.drawConstraintsBoard()
+
         if self.Graph_image != '':
             self.screen.blit(self.Graph_image, (441, 215))
 
@@ -105,9 +105,11 @@ class MinimizeFunction:
                         if self.add_constraint_btn.check_click():
                             if self.Constraint_input.get_text() != '':
                                 self.constraints.append(self.Constraint_input.get_text())
+                                self.drawConstraintsBoard()
                         if self.remove_constraint_btn.check_click():
                             if self.constraints and self.Index_input.get_text() != '':
                                 self.constraints.pop(int(self.Index_input.get_text())-1) 
+                                self.drawConstraintsBoard()
 
                 self.manager.process_events(event)
                 self.manager.update(UI_REFRESH_RATE)

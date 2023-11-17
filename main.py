@@ -3,7 +3,7 @@ import sys
 from Integral import Integral
 from OptimizeMinimize.MinimizeFunction import MinimizeFunction
 from BasicCalculator import calculator
-from static import *
+from assets.static import *
 from NoiSuy import NoiSuy
 from Matrix.viewLinalg import DisplayViewLinalgBasic
 # Khởi tạo Pygame
@@ -18,9 +18,9 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 
 # Tải hình ảnh nền
-background_image = pygame.image.load("Background\\background.png")
-background_image1 = pygame.image.load("Background\\background1.png")
-background_image2 = pygame.image.load("Background\\background2.png")
+background_image = pygame.image.load("assets\\Background\\background.png")
+background_image1 = pygame.image.load("assets\\Background\\background1.png")
+background_image2 = pygame.image.load("assets\\Background\\background2.png")
 
 # Tạo một bản sao nền có kích thước phù hợp với cửa sổ
 background_scaled = pygame.transform.scale(background_image, (WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -36,21 +36,21 @@ def main():
     current_interface = "interface1"
     
     # Load hình ảnh cho nút
-    button_image = load_image("Button\Start.png")
+    button_image = load_image("assets\Button\Start.png")
     button_image = pygame.transform.scale(button_image, (300, 50))  # Chỉnh kích thước nút
-    basic_image=load_image("Button\BASIC.png")
+    basic_image=load_image("assets\Button\BASIC.png")
     basic_image=pygame.transform.scale(basic_image, (250, 50))
-    complex_image=load_image("Button\COMPLEX.png")
+    complex_image=load_image("assets\Button\COMPLEX.png")
     complex_image=pygame.transform.scale(complex_image, (250, 50))
-    back_image=load_image("Button\BACK.png")
+    back_image=load_image("assets\Button\BACK.png")
     back_image=pygame.transform.scale(back_image, (100, 30))
-    matrix_image=load_image("Button\MATRIX.png")
+    matrix_image=load_image("assets\Button\MATRIX.png")
     matrix_image=pygame.transform.scale(matrix_image, (200, 50))
-    integral_image=load_image("Button\INTEGRAL.png")
+    integral_image=load_image("assets\Button\INTEGRAL.png")
     integral_image=pygame.transform.scale(integral_image, (200, 50))
-    interpolate_image=load_image("Button\INTERPOLATE.png")
+    interpolate_image=load_image("assets\Button\INTERPOLATE.png")
     interpolate_image=pygame.transform.scale(interpolate_image, (200, 50))
-    minimalize_image=load_image("Button\MINIMALIZE.png")
+    minimalize_image=load_image("assets\Button\MINIMALIZE.png")
     minimalize_image=pygame.transform.scale(minimalize_image, (200, 50))
     
     while running:
@@ -73,11 +73,11 @@ def main():
                     if back_button_rect.collidepoint(mouse_x, mouse_y):
                         current_interface = "interface2"
                     elif button1_rect.collidepoint(mouse_x, mouse_y):
-                       DisplayViewLinalgBasic().draw()
+                        DisplayViewLinalgBasic().draw()
                     elif button2_rect.collidepoint(mouse_x, mouse_y):
-                        Integral()
+                        Integral.Integral()
                     elif button3_rect.collidepoint(mouse_x, mouse_y):
-                       NoiSuy.run()
+                        NoiSuy.run()
                     elif button4_rect.collidepoint(mouse_x, mouse_y):
                         print('get into minimize')
                         MinimizeFunction().run()

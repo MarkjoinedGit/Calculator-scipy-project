@@ -24,9 +24,9 @@ def Integral():
     pygame.display.set_caption("Integrate")
 
     # Tải hình ảnh nền
-    background_image = pygame.image.load("Background\\background3.png")
+    background_image = pygame.image.load("assets\\Background\\background3.png")
     #Tải hình button
-    back_image=load_image("Button\Back2.png")
+    back_image=load_image("assets\Button\Back2.png")
     back_image=pygame.transform.scale(back_image, (100, 30))
     # Tạo một bản sao nền có kích thước phù hợp với cửa sổ
     background_scaled = pygame.transform.scale(background_image, (window_width, window_height))

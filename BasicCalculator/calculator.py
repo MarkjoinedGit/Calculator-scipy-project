@@ -3,7 +3,7 @@ import pygame as pg
 from OptimizeMinimize import buttons as bt
 import pygame_gui
 from BasicCalculator import BasicFunction 
-from static import *
+from assets.static import *
 
 class Calculator:
     def __init__(self):
@@ -12,10 +12,10 @@ class Calculator:
         pg.display.set_caption('Caculator')
         self.clock = pg.time.Clock()
         self.manager = pygame_gui.UIManager((WINDOW_WIDTH, WINDOW_HEIGHT))
-        self.calculator_surf = pg.image.load(r'OptimizeMinimize\assets\background\screen-background.png').convert()
+        self.calculator_surf = pg.image.load(r'assets\background\screen-background.png').convert()
         self.calculator_rect = self.calculator_surf.get_rect(center=(WINDOW_WIDTH//2, WINDOW_HEIGHT//2))
 
-        self.text_font = pg.font.Font(r'OptimizeMinimize\assets\font\montserrat\Montserrat-Light.otf',25)
+        self.text_font = pg.font.Font(r'assets\font\montserrat\Montserrat-Light.otf',25)
 
         #text_input
         self.text_input = pygame_gui.elements.UITextEntryLine(relative_rect=pg.Rect((320, 55), (359, 37)), manager=self.manager, object_id='#number_entry')

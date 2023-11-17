@@ -10,6 +10,10 @@ def tinh_tich_phan(function, a, b):
     result, error = scipy_integrate.quad(python_function, a, b)
     return result, error
 
+def load_image(image_path):
+    image = pygame.image.load(image_path)
+    return image
+
 def Integral():
     # Khởi tạo Pygame
     pygame.init()
@@ -20,7 +24,10 @@ def Integral():
     pygame.display.set_caption("Integrate")
 
     # Tải hình ảnh nền
-    background_image = pygame.image.load("Background\\background3.png")
+    background_image = pygame.image.load("assets\\Background\\background3.png")
+    #Tải hình button
+    back_image=load_image("assets\Button\Back2.png")
+    back_image=pygame.transform.scale(back_image, (100, 30))
     # Tạo một bản sao nền có kích thước phù hợp với cửa sổ
     background_scaled = pygame.transform.scale(background_image, (window_width, window_height))
 
@@ -74,6 +81,9 @@ def Integral():
                     else:
                         function += event.unicode
             elif event.type == MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                if back_button_rect.collidepoint(mouse_x, mouse_y):
+                    return
                 x, y = event.pos
                 if 254 <= x <= 441 and 69 <= y <= 129:
                     active_input = "lower_limit"
@@ -132,7 +142,14 @@ def Integral():
         calculate_button = pygame.draw.circle(screen, white, (890, 370), 30)
         pygame.draw.circle(screen, white, (890, 370), 30, 2)
         equal_sign = button_font.render("=", True, black)
-        screen.blit(equal_sign, (880, 350))        
+        screen.blit(equal_sign, (880, 350))    
+
+         # Vẽ nút ở góc bên trái phía trên
+        back_button_width, back_button_height = 100, 30
+        back_button_x = 20
+        back_button_y = 20
+        back_button_rect = pygame.Rect(back_button_x, back_button_y, back_button_width, back_button_height)
+        screen.blit(back_image, back_button_rect)    
         
          # Hiển thị kết quả tích phân
         result_rect = pygame.Rect(52, 437, 900, 100)

@@ -1,6 +1,6 @@
 
 import pygame as pg
-import color as col
+from OptimizeMinimize import color as col
 
 class Button():
     def __init__(self, screen, text_font, text, width, height, pos, border_true, border_radius, color_bg, color_hover_bg, def_color_text, color_hover_text):

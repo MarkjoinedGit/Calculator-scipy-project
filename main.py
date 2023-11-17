@@ -13,10 +13,6 @@ pygame.init()
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Scipy")
 
-# Màu sắc
-white = (255, 255, 255)
-black = (0, 0, 0)
-
 # Tải hình ảnh nền
 background_image = pygame.image.load("Background\\background.png")
 background_image1 = pygame.image.load("Background\\background1.png")

@@ -17,7 +17,7 @@ import SciPy_Linalg as spLinalg
 
 #Load Image
 defaultImg=pg.image.load('assets/img/default.png')
-
+homeImg=pg.image.load('assets/img/back.png')
 # bien toan cuc
 view_width = 1200
 view_height = 670
@@ -71,10 +71,12 @@ class DisplayViewLinalgBasic():
         self.target_width, self.target_height=540,295
         self.target_x, self.target_y = 55,370
         
+        self.homeSize=(50,50)
         
         self.choice_width, self.choice_height = 230,30
         #Scale Img
         self.defaultImg=pg.transform.scale(defaultImg,(self.widthDef,self.heightDef))
+        self.homeImg=pg.transform.scale(homeImg,(self.homeSize))
         #Matrix a
         self.Matrix1=np.array([])
         self.Matrix1Box =pygame_gui.elements.UITextEntryBox(relative_rect=pg.Rect((50,4),(self.widthBox,self.heightBox)),
@@ -104,6 +106,12 @@ class DisplayViewLinalgBasic():
                                                        object_id="#a_0_0"            
         )
         # Create a Button
+        #Come back Home
+        self.ButtonHome=pygame_gui.elements.UIButton(relative_rect=pg.Rect((4,view_height-55),(self.homeSize)),
+                                                     manager=self.MANAGER,
+                                                     text='',
+                                                     object_id="home")
+        
         # Button = 
         self.ButtonCal=pygame_gui.elements.UIButton(relative_rect=pg.Rect((560,80),(50, 30)),
                                                     text="=",
@@ -698,6 +706,8 @@ class DisplayViewLinalgBasic():
                             self.solveCosm()
                         if event.ui_element==self.defaultCosm:
                             self.setDefaultCosm()
+                        if event.ui_element==self.ButtonHome:
+                            return 
                 if event.type == pg.QUIT: 
                     pg.quit()
                     sys.exit()
@@ -745,6 +755,7 @@ class DisplayViewLinalgBasic():
             self.defaultExpm.set_image(self.defaultImg)
             self.defaultSinm.set_image(self.defaultImg)
             self.defaultCosm.set_image(self.defaultImg)
+            self.ButtonHome.set_image(self.homeImg)
             #Draw input boxes
             #Matrix A 5x5
             

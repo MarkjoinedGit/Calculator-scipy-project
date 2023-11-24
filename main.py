@@ -4,7 +4,6 @@ from Integral import Integral
 from OptimizeMinimize.MinimizeFunction import MinimizeFunction
 from BasicCalculator import calculator
 from assets.static import *
-from NoiSuy import NoiSuy
 from Matrix.viewLinalg import DisplayViewLinalgBasic
 # Khởi tạo Pygame
 pygame.init()
@@ -77,7 +76,7 @@ def main():
                     elif button2_rect.collidepoint(mouse_x, mouse_y):
                         Integral.Integral()
                     elif button3_rect.collidepoint(mouse_x, mouse_y):
-                        NoiSuy.run()
+                        from NoiSuy import NoiSuy
                     elif button4_rect.collidepoint(mouse_x, mouse_y):
                         print('get into minimize')
                         MinimizeFunction().run()

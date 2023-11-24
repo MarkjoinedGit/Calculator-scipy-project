@@ -12,41 +12,36 @@ def cubic_interpolation(x, x_values, y_values):
 
 # Hàm tính toán và vẽ đồ thị
 def calculate_interpolation():
-    # Lấy dữ liệu từ ô nhập liệu
-    x_values = entry_x_values.get().split()
-    y_values = entry_y_values.get().split()
-    x_new = entry_x_new.get()
+    x_values = list(map(float, entry_x_values.get().split()))
+    y_values = list(map(float, entry_y_values.get().split()))
+    x_new = float(entry_x_new.get())
 
     try:
-        # Kiểm tra xem tất cả các ô nhập liệu có được điền hay không
-        if not x_values or not y_values or not x_new:
-            raise ValueError("Please fill in all input fields.")
-
-        # Chuyển đổi chuỗi thành danh sách số
-        x_values = list(map(float, x_values))
-        y_values = list(map(float, y_values))
-        x_new = float(x_new)
-
-        # Kiểm tra độ dài của các danh sách
-        if len(x_values) != len(y_values):
-            raise ValueError("The number of X values must be equal to the number of Y values.")
-
-        # Thực hiện nội suy bậc ba
         y_interpolated = cubic_interpolation(x_new, x_values, y_values)
-
-        # Hiển thị kết quả
         result_text.delete(1.0, 'end')
         result_text.insert('end', f"Cubic Interpolation at x = {x_new}: {y_interpolated}\n")
 
-        # Vẽ điểm nội suy mới mà không cần xóa và vẽ lại toàn bộ đồ thị
+        # Xóa đồ thị hiện tại
+        plt.clf()
+
+        # Vẽ đồ thị mới
+        x_vals_for_plot = np.linspace(min(x_values), max(x_values), 100)
+        plt.plot(x_vals_for_plot, cubic_interpolation(x_vals_for_plot, x_values, y_values), label='Cubic Interpolation', color='#008080')
+        plt.scatter(x_values, y_values, label='Data', color='#008080')
+        plt.plot([x_new, x_new], [0, y_interpolated], '--', color='#00BFFF', label=f'Connect down to x-axis, y={y_interpolated}')
+        plt.plot([min(x_values), x_new], [y_interpolated, y_interpolated], '--', color='#8A2BE2', label=f'Connect over to y-axis, x={x_new}')
         plt.scatter(x_new, y_interpolated, color='#FF4500', label=f'Interpolation at x={x_new}')
-        plt.legend(loc='upper left')
+        plt.legend(loc='upper left')  # Chú thích ở góc trái trên
+        plt.xlabel('X Values', fontweight='bold')
+        plt.ylabel('Y Values', fontweight='bold')
+        plt.title('Cubic Interpolation', fontweight='bold')
+
+        # Vẽ lại canvas
         canvas.draw()
 
     except ValueError as e:
-        # Hiển thị thông báo lỗi
         result_text.delete(1.0, 'end')
-        result_text.insert('end', f"Error: {str(e)}\n")
+        result_text.insert('end', str(e) + '\n')
 
 # Hàm đặt lại đồ thị
 def reset_graph():
@@ -56,9 +51,6 @@ def reset_graph():
     entry_y_values.delete(0, 'end')
     entry_x_new.delete(0, 'end')
     canvas.draw()
-
-def back():
-    root.destroy()
 
 # Tạo giao diện
 root = Tk()
@@ -100,9 +92,6 @@ ttk.Button(frame, text="Calculate and Display Graph", command=calculate_interpol
 # Nút đặt lại
 ttk.Button(frame, text="Reset", command=reset_graph).grid(row=3, column=1, pady=10, columnspan=2)
 
-# Nút back lại chương trình
-ttk.Button(frame, text="Back", command=back).grid(row=3, column=2, pady=10, columnspan=2)
-
 # Kết quả
 result_text = Text(frame, wrap='word', height=5, width=50)
 result_text.grid(row=4, column=0, columnspan=2, pady=10)
@@ -128,10 +117,5 @@ canvas = FigureCanvasTkAgg(fig, master=frame_graph)
 canvas.draw()
 canvas.get_tk_widget().pack(side='top', fill='both', expand=1)
 
-# kiểm tra xem ứng dụng có đang chạy không
-running = True
-
 # Chạy ứng dụng
-def run():
-    root.mainloop()
-    
+root.mainloop()

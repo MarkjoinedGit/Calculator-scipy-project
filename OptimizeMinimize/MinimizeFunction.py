@@ -92,6 +92,7 @@ class MinimizeFunction:
                         exit()
                     if event.type == pg.MOUSEBUTTONDOWN:
                         if self.submit_btn.check_click():
+                            print(self.constraints)
                             self.error_message = self.text_font_smaller.render('', True, 'red')
                             self.expression = self.Expression_input.get_text()
                             if self.expression:
